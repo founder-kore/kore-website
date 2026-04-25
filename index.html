@@ -867,6 +867,43 @@
 
   /* ── APPLE STORE ICON ── */
   .store-icon { font-size: 18px; }
+
+  /* ── FAQ ── */
+  .faq-list { max-width: 760px; display: flex; flex-direction: column; gap: 0; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-item:first-child { border-top: 1px solid var(--border); }
+  .faq-q {
+    width: 100%; background: none; border: none; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 0; text-align: left;
+    font-family: var(--font-h); font-size: 17px; font-weight: 700;
+    color: var(--text); letter-spacing: -.2px;
+    transition: color .2s;
+  }
+  .faq-q:hover { color: var(--orange); }
+  .faq-icon {
+    font-size: 22px; font-weight: 300; color: var(--muted);
+    flex-shrink: 0; margin-left: 24px;
+    transition: transform .3s, color .2s;
+    line-height: 1;
+  }
+  .faq-q[aria-expanded="true"] .faq-icon {
+    transform: rotate(45deg); color: var(--orange);
+  }
+  .faq-a {
+    overflow: hidden; max-height: 0;
+    transition: max-height .35s ease, padding .35s ease;
+  }
+  .faq-a.open { max-height: 300px; }
+  .faq-a p {
+    padding-bottom: 24px;
+    font-size: 15px; color: var(--muted); line-height: 1.75;
+  }
+
+  @media (max-width: 600px) {
+    .faq-q { font-size: 15px; padding: 20px 0; }
+    .faq-a p { font-size: 14px; }
+  }
 </style>
 </head>
 <body>
@@ -1263,6 +1300,92 @@
   </div>
 </section>
 
+<!-- ══════ FAQ ══════ -->
+<section id="faq" style="padding: 120px 0; background: var(--bg2);">
+  <div class="blob blob-purple" style="width:500px;height:500px;top:0;right:-150px;opacity:.3;"></div>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag reveal">✦ FAQ</div>
+      <h2 class="reveal reveal-delay-1">Questions you<br/><em>probably have.</em></h2>
+      <p class="section-lead reveal reveal-delay-2">Everything you need to know before you download.</p>
+    </div>
+
+    <div class="faq-list reveal">
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          When is The Kore App launching?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>It's coming to the App Store soon. We don't have an official date locked in just yet but it's close. Follow us on Instagram or join our Discord to be the first to know when it drops.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Is it free?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes, free to download and free to use. There's no paywall on anything right now. We make a small commission on partner discount codes like CDJapan, NordVPN and Amazon, which is how we keep the lights on. A premium version is planned for the future but the core experience will always be free.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          What streaming services does it support?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Whatever platform a recommended anime is available on, the app will show you. So it depends on the anime. You might see Crunchyroll, Netflix, HIDIVE, Prime Video or others. Tap the badge and it takes you straight there.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          How does the matching actually work?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Right now it's based on the 3 questions you answer about your mood, vibe and what kind of story you're after. As you use the app more, it starts to learn your taste. Your ratings, loved anime, favourite genres and watch history all feed into future picks. The more you use it, the better it gets at knowing what you'll enjoy.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Is it good for people who are new to anime?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>100%. The app was built to be simple and easy to use for anyone regardless of how much anime they've seen. If you've never watched a single episode you'll still get a great first pick. You just answer 3 questions and go from there. No knowledge required.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          What if I don't like the recommendation?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>No problem. You can generate another pick based on the same answers, or head back to the home screen and answer the questions again for something completely different. There's also a Surprise Me button if you just want a random pick with no questions at all.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Is it iOS only?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>It's launching on the iOS App Store first. Android is coming after that. We want to make sure the iOS version is solid before we bring it to more platforms.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ══════ FINAL CTA ══════ -->
 <section id="cta">
   <div class="blob blob-orange" style="width:700px;height:700px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.5;"></div>
@@ -1404,6 +1527,22 @@
       this.classList.add('active');
     });
   });
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var answer = this.nextElementSibling;
+      var isOpen = this.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq-q').forEach(function(b) {
+        b.setAttribute('aria-expanded', 'false');
+        b.nextElementSibling.classList.remove('open');
+      });
+      if (!isOpen) {
+        this.setAttribute('aria-expanded', 'true');
+        answer.classList.add('open');
+      }
+    });
+  });
+
   // Legal modal triggers
   function closeAllModals() {
     document.querySelectorAll('.modal-backdrop').forEach(b => b.classList.remove('open'));
